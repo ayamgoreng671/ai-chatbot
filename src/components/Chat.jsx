@@ -34,6 +34,12 @@ const Chat = ({ saveChat, activeChat }) => {
     saveChat(finalMessages);
   };
 
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    alert("Code copied to clipboard!");
+  };
+
   return (
     <div className="flex flex-col h-screen w-full bg-[#FED8B1]">
       <div className="p-4 text-center text-white bg-[#A67B5B] shadow-md text-xl font-bold">
