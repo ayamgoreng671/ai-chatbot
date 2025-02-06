@@ -27,7 +27,7 @@ const Chat = ({ saveChat, activeChat }) => {
     setInput("");
 
     const aiResponse = await getAiResponse(input);
-    const aiMessage = { text: aiResponse, sender: "Ayam" };
+    const aiMessage = { text: aiResponse, sender: "Ai" };
     const finalMessages = [...updatedMessages, aiMessage];
 
     setMessages(finalMessages);
@@ -37,14 +37,38 @@ const Chat = ({ saveChat, activeChat }) => {
   return (
     <div className="flex flex-col h-screen w-full bg-[#FED8B1]">
       <div className="p-4 text-center text-white bg-[#A67B5B] shadow-md text-xl font-bold">
-        AYAM 🐔 Chat
+        CodeMedic 🐔 
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
         {messages.map((msg, index) => (
           <div key={index} className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}>
             <div className={`p-4 rounded-xl text-base max-w-sm break-words shadow-md ${msg.sender === "You" ? "bg-[#ECB176] text-white text-left" : "bg-gray-200 text-gray-900"}`}>
-              <ReactMarkdown remarkPlugins={[remarkGfm, remarkParse]}>
+              
+            <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkParse]}
+                components={{
+                  code({ inline, className, children, ...props }) {
+                    return inline ? (
+                      <code className="bg-gray-200 px-1 rounded" {...props}>
+                        {children}
+                      </code>
+                    ) : (
+                      <div className="relative">
+                        <button
+                          className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                          onClick={() => copyToClipboard(children)}
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="bg-gray-800 text-white p-3 rounded-md overflow-auto">
+                          <code {...props}>{children}</code>
+                        </pre>
+                      </div>
+                    );
+                  },
+                }}
+              >
                 {`**${msg.sender}**:\n${msg.text}`}
               </ReactMarkdown>
             </div>
@@ -62,3 +86,4 @@ const Chat = ({ saveChat, activeChat }) => {
 };
 
 export default Chat;
+

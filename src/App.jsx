@@ -31,7 +31,7 @@ function App() {
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} chatHistory={chatHistory} loadChat={loadChat} />
       <div className="flex-1 flex flex-col">
         <div className="lg:hidden p-4 bg-[#A67B5B] text-white flex justify-between">
-          <h2 className="text-xl font-bold">Ayam Chat</h2>
+          {/* <h2 className="text-xl font-bold">Ayam Chat</h2> */}
           <button onClick={() => setSidebarOpen(true)} className="p-2">
             <Menu size={24} />
           </button>

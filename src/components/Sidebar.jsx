@@ -5,7 +5,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, chatHistory, loadChat }) => {
   return (
     <div className={`fixed lg:relative lg:translate-x-0 w-64 h-screen bg-[#6F4E37] text-white p-5 transition-transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:block`}>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">AYAM 🐔 Chat</h2>
+        <h2 className="text-xl font-bold">CodeMedic 🐔</h2>
         <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2">
           <X size={24} />
         </button>
